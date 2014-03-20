@@ -35,7 +35,7 @@
 
 @implementation NSArray (Chuzzle)
 
-- (NSArray *)chuzzle {
+- (instancetype)chuzzle {
     id objs[self.count];
     NSUInteger x = 0;
     for (__strong id obj in self) {
@@ -44,7 +44,7 @@
         if (obj)
             objs[x++] = obj;
     }
-    return x == 0 ? nil : [NSArray arrayWithObjects:objs count:x];
+    return x == 0 ? nil : [[self class] arrayWithObjects:objs count:x];
 }
 
 @end

@@ -8,7 +8,7 @@
 @end
 
 @interface NSArray (Chuzzle)
-- (NSArray *)chuzzle;
+- (instancetype)chuzzle;
 @end
 
 @interface NSDictionary (Chuzzle)

@@ -21,6 +21,11 @@ int main() {
     XCTAssertEqualObjects(a, @[@1]);
 }
 
+- (void)test_mutable_array {
+    NSMutableArray *mutableArray = [@[@1, @2, @""] mutableCopy];
+    XCTAssertTrue([mutableArray.chuzzle isKindOfClass:[NSMutableArray class]], @"Chuzzling a mutable array should return a mutable array");
+}
+
 @end
 
 __EOBJC__
