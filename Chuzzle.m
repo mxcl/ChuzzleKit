@@ -23,8 +23,8 @@
         if ([obj respondsToSelector:@selector(chuzzle)])
             obj = [obj chuzzle];
         if (obj) {
-            x += 1;
             objs[x] = obj, keys[x] = key;
+            x += 1;
         }
     }
     return x == 0 ? nil : [[self class] dictionaryWithObjects:objs forKeys:keys count:x];

@@ -35,6 +35,12 @@ int main() {
     XCTAssertTrue([dict.chuzzle isKindOfClass:[NSMutableDictionary class]]);
 }
 
+- (void)test_no_chuzzle {
+    NSDictionary *a =  @{@1: @"1", @2: @"2"};
+    id b = a.chuzzle;
+    XCTAssertEqualObjects(a, b);
+}
+
 @end
 
 
