@@ -4,7 +4,7 @@
 @import Foundation.NSString;
 
 @interface NSString (Chuzzle)
-- (NSString *)chuzzle;
+- (instancetype)chuzzle;
 @end
 
 @interface NSArray (Chuzzle)
@@ -12,7 +12,7 @@
 @end
 
 @interface NSDictionary (Chuzzle)
-- (NSDictionary *)chuzzle;
+- (instancetype)chuzzle;
 @end
 
 @interface NSNull (Chuzzle)

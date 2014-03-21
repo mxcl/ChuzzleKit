@@ -27,7 +27,25 @@
             objs[x] = obj, keys[x] = key;
         }
     }
-    return x == 0 ? nil : [NSDictionary dictionaryWithObjects:objs forKeys:keys count:x];
+    return x == 0 ? nil : [[self class] dictionaryWithObjects:objs forKeys:keys count:x];
+}
+
+@end
+
+
+@implementation NSMutableDictionary (Chuzzle)
+
+- (instancetype)chuzzle {
+    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if (![obj respondsToSelector:@selector(chuzzle)])
+            return;
+        id chuzzled = [obj chuzzle];
+        if (chuzzled)
+            self[key] = chuzzled;
+        else
+            [self removeObjectForKey:key];
+    }];
+    return self.count == 0 ? nil : self;
 }
 
 @end
@@ -45,6 +63,24 @@
             objs[x++] = obj;
     }
     return x == 0 ? nil : [[self class] arrayWithObjects:objs count:x];
+}
+
+@end
+
+
+@implementation NSMutableArray (Chuzzle)
+
+- (NSMutableArray *)chuzzle {
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
+        if (![obj respondsToSelector:@selector(chuzzle)])
+            return;
+        id chuzzled = [obj chuzzle];
+        if (chuzzled)
+            self[x] = chuzzled;
+        else
+            [self removeObject:obj];
+    }];
+    return self.count == 0 ? nil : self;
 }
 
 @end
