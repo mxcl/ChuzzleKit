@@ -15,7 +15,7 @@
 @implementation NSDictionary (Chuzzle)
 
 - (id)chuzzle {
-    if ([self isKindOfClass:[NSMutableDictionary class]]) {
+    if ([self isMemberOfClass:[NSMutableDictionary class]]) {
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
             NSMutableDictionary *dict = self;
             if (![obj respondsToSelector:@selector(chuzzle)])
@@ -50,7 +50,7 @@
 @implementation NSArray (Chuzzle)
 
 - (instancetype)chuzzle {
-    if ([self isKindOfClass:[NSMutableArray class]]) {
+    if ([self isMemberOfClass:[NSMutableArray class]]) {
         NSMutableArray *array = self;
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
             if (![obj respondsToSelector:@selector(chuzzle)])
