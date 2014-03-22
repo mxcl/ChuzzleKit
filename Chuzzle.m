@@ -15,6 +15,20 @@
 @implementation NSDictionary (Chuzzle)
 
 - (id)chuzzle {
+    if ([self isKindOfClass:[NSMutableDictionary class]]) {
+        [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            NSMutableDictionary *dict = self;
+            if (![obj respondsToSelector:@selector(chuzzle)])
+                return;
+            id chuzzled = [obj chuzzle];
+            if (chuzzled)
+                dict[key] = chuzzled;
+            else
+                [dict removeObjectForKey:key];
+        }];
+        return self.count == 0 ? nil : self;
+    }
+    
     id objs[self.count];
     id keys[self.count];
     NSUInteger x = 0;
@@ -33,27 +47,23 @@
 @end
 
 
-@implementation NSMutableDictionary (Chuzzle)
-
-- (instancetype)chuzzle {
-    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        if (![obj respondsToSelector:@selector(chuzzle)])
-            return;
-        id chuzzled = [obj chuzzle];
-        if (chuzzled)
-            self[key] = chuzzled;
-        else
-            [self removeObjectForKey:key];
-    }];
-    return self.count == 0 ? nil : self;
-}
-
-@end
-
-
 @implementation NSArray (Chuzzle)
 
 - (instancetype)chuzzle {
+    if ([self isKindOfClass:[NSMutableArray class]]) {
+        NSMutableArray *array = self;
+        [self enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
+            if (![obj respondsToSelector:@selector(chuzzle)])
+                return;
+            id chuzzled = [obj chuzzle];
+            if (chuzzled)
+                array[x] = chuzzled;
+            else
+                [array removeObject:obj];
+        }];
+        return self.count == 0 ? nil : self;
+    }
+    
     id objs[self.count];
     NSUInteger x = 0;
     for (__strong id obj in self) {
@@ -63,24 +73,6 @@
             objs[x++] = obj;
     }
     return x == 0 ? nil : [[self class] arrayWithObjects:objs count:x];
-}
-
-@end
-
-
-@implementation NSMutableArray (Chuzzle)
-
-- (NSMutableArray *)chuzzle {
-    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
-        if (![obj respondsToSelector:@selector(chuzzle)])
-            return;
-        id chuzzled = [obj chuzzle];
-        if (chuzzled)
-            self[x] = chuzzled;
-        else
-            [self removeObject:obj];
-    }];
-    return self.count == 0 ? nil : self;
 }
 
 @end
