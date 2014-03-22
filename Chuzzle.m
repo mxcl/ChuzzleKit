@@ -6,7 +6,11 @@
 
 - (NSString *)chuzzle {
     NSString *s = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    return s.length == 0 ? nil : s;
+    if (self.classForCoder == [NSMutableString class]) {
+        [(id)self setString:s];
+        return self.length == 0 ? nil : self;
+    } else
+        return s.length == 0 ? nil : s;
 }
 
 @end

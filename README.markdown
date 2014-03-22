@@ -22,5 +22,3 @@ Mutable Chuzzling
 Chuzzling occurs in-place, as far as it can. If a nil would be the chuzzled
 result the mutable version becomes the empty equivalent, and the return is
 `nil`.
-
-Notably, I couldn't make an `[NSMutableString chuzzle]`. PRs welcome.

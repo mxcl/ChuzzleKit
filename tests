@@ -41,6 +41,16 @@ int main() {
     XCTAssertEqualObjects(a, b);
 }
 
+- (void)test_mutable_string {
+    NSMutableString *a = [NSMutableString stringWithString:@" aa "];
+    a.chuzzle;
+    XCTAssertEqualObjects(a.copy, @"aa");
+    
+    a = [@"  bb  ".mutableCopy chuzzle];
+    XCTAssertEqualObjects(a.copy, @"bb");
+    XCTAssertTrue([a isKindOfClass:[NSMutableString class]]);    
+}
+
 @end
 
 
