@@ -41,7 +41,8 @@
             x += 1;
         }
     }
-    return x == 0 ? nil : [[self class] dictionaryWithObjects:objs forKeys:keys count:x];
+
+    return x == 0 ? nil : [NSDictionary dictionaryWithObjects:objs forKeys:keys count:x];
 }
 
 @end
@@ -72,7 +73,7 @@
         if (obj)
             objs[x++] = obj;
     }
-    return x == 0 ? nil : [[self class] arrayWithObjects:objs count:x];
+    return x == 0 ? nil : [NSArray arrayWithObjects:objs count:x];
 }
 
 @end
