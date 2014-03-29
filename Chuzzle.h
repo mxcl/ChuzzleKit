@@ -18,3 +18,7 @@
 @interface NSNull (Chuzzle)
 - (id)chuzzle;  // always nil
 @end
+
+@interface NSObject (Chuzzle)
+- (id)chuzzle;  // return self
+@end

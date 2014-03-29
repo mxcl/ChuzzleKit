@@ -90,3 +90,12 @@
 }
 
 @end
+
+
+@implementation NSObject (Chuzzle)
+
+- (id)chuzzle {
+    return self;
+}
+
+@end
