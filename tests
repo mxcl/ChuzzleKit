@@ -51,6 +51,11 @@ int main() {
     XCTAssertTrue([a isKindOfClass:[NSMutableString class]]);    
 }
 
+- (void)test_another_test {
+    NSDictionary *d = @{@1: @"", @2: @"  2  "}.chuzzle;
+    XCTAssertEqualObjects(d, @{@2: @"2"});
+}
+
 @end
 
 
