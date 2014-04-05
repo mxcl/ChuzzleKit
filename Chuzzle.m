@@ -27,7 +27,7 @@
 - (id)chuzzle {
     if (self.classForCoder == [NSMutableDictionary class]) {
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-            NSMutableDictionary *dict = self;
+            NSMutableDictionary *dict = (id)self;
             if (![obj respondsToSelector:@selector(chuzzle)])
                 return;
             id chuzzled = [obj chuzzle];
@@ -62,7 +62,7 @@
 
 - (instancetype)chuzzle {
     if (self.classForCoder == [NSMutableArray class]) {
-        NSMutableArray *array = self;
+        NSMutableArray *array = (id)self;
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
             if (![obj respondsToSelector:@selector(chuzzle)])
                 return;
