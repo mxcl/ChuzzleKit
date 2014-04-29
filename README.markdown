@@ -22,3 +22,9 @@ Mutable Chuzzling
 Chuzzling occurs in-place, as far as it can. If a nil would be the chuzzled
 result the mutable version becomes the empty equivalent, and the return is
 `nil`.
+
+Custom Chuzzling
+================
+All our `chuzzle` methods on container classes will call `chuzzle` on the objects they contain, if it is implemented.
+
+So if you want to support recursive chuzzling on your own objects, simply implement a `chuzzle` method.
