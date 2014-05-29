@@ -28,3 +28,7 @@ Custom Chuzzling
 All our `chuzzle` methods on container classes will call `chuzzle` on the objects they contain, if it is implemented.
 
 So if you want to support recursive chuzzling on your own objects, simply implement a `chuzzle` method.
+
+Making JSON PLIST-Compliant
+===========================
+Since `NSNull` cannot be encoded into a PLIST, a convenient (but by **no means** the primary) usage of ChuzzleKit is to make saving JSON to a plist not crash (eg. via `writeToFile:atomically`).
