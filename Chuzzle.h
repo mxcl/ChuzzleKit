@@ -1,7 +1,9 @@
-@import Foundation.NSArray;
-@import Foundation.NSDictionary;
-@import Foundation.NSNull;
-@import Foundation.NSString;
+#import <Foundation/Foundation.h>
+
+// @import Foundation.NSArray;
+// @import Foundation.NSDictionary;
+// @import Foundation.NSNull;
+// @import Foundation.NSString;
 
 @interface NSString (Chuzzle)
 - (instancetype)chuzzle;
