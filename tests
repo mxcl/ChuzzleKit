@@ -22,10 +22,10 @@ int main() {
 }
 
 - (void)test_mutable_array {
-    NSMutableArray *mutableArray = [@[@1, @2, @""] mutableCopy];
+    NSMutableArray *mutableArray = [@[@1, @2, @"", @3, @" ", @4, @5] mutableCopy];
     id chuzzled = mutableArray.chuzzle;
-    XCTAssertTrue([chuzzled isKindOfClass:[NSMutableArray class]], @"Chuzzling a mutable array should return a mutable array");
-    XCTAssertEqual(mutableArray.count, 2ul);
+    XCTAssertTrue([chuzzled classForCoder] == [NSMutableArray class], @"Chuzzling a mutable array should return a mutable array");
+    XCTAssertEqual(mutableArray.count, 5ul);
     XCTAssertEqual(chuzzled, mutableArray);
 }
 

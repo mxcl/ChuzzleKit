@@ -62,16 +62,18 @@
 
 - (instancetype)chuzzle {
     if (self.classForCoder == [NSMutableArray class]) {
-        NSMutableArray *array = (id)self;
-        [self.copy enumerateObjectsUsingBlock:^(id obj, NSUInteger x, BOOL *stop){
-            if (![obj respondsToSelector:@selector(chuzzle)])
-                return;
-            id chuzzled = [obj chuzzle];
-            if (chuzzled)
-                array[x] = chuzzled;
-            else
-                [array removeObject:obj];
-        }];
+        NSMutableArray *rms = [NSMutableArray new];
+        for (uint x = 0; x < self.count; ++x) {
+            id obj = self[x];
+            if ([obj respondsToSelector:@selector(chuzzle)]) {
+                id chuzzled = [obj chuzzle];
+                if (chuzzled)
+                    ((id)self)[x] = chuzzled;
+                else
+                    [rms addObject:obj];
+            }
+        };
+        [(id)self removeObjectsInArray:rms];
         return self.count == 0 ? nil : self;
     }
     
