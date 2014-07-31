@@ -17,11 +17,17 @@ For example:
 * `@{@1: @""}.chuzzle` is `nil`
 * `@{@1: @"", @2: @" 2  "}.chuzzle` is `@{@2: @"2"}`
 
+Note:
+
+* @"  2 3   " chuzzles to: @"2 3", that is, it only trims the string, it doesn’t eat the internal whitespace. This is because the “falsy” whitespace is just the trailing whitespace, not the internal whitespace. This is probably what you expected.
+
+
 Mutable Chuzzling
 =================
 Chuzzling occurs in-place, as far as it can. If a nil would be the chuzzled
 result the mutable version becomes the empty equivalent, and the return is
 `nil`.
+
 
 Custom Chuzzling
 ================
@@ -29,6 +35,12 @@ All our `chuzzle` methods on container classes will call `chuzzle` on the object
 
 So if you want to support recursive chuzzling on your own objects, simply implement a `chuzzle` method.
 
+
 Making JSON PLIST-Compliant
 ===========================
 Since `NSNull` cannot be encoded into a PLIST, a convenient (but by **no means** the primary) usage of ChuzzleKit is to make saving JSON to a plist not crash (eg. via `writeToFile:atomically`).
+
+
+Stripping Strings
+=================
+`-chuzzle` can be a less enormous alternative to `-stringByTrimmingCharactersInSet:`, just don’t forget to expect `nil` in the response.
