@@ -21,39 +21,19 @@ int main() {
     XCTAssertEqualObjects(a, @[@1]);
 }
 
-- (void)test_mutable_array {
-    NSMutableArray *mutableArray = [@[@1, @2, @"", @3, @" ", @4, @5] mutableCopy];
-    id chuzzled = mutableArray.chuzzle;
-    XCTAssertTrue([chuzzled classForCoder] == [NSMutableArray class], @"Chuzzling a mutable array should return a mutable array");
-    XCTAssertEqual(mutableArray.count, 5ul);
-    XCTAssertEqual(chuzzled, mutableArray);
-}
-
-- (void)test_mutable_dict {
-    NSMutableDictionary *dict = @{@1: @"1", @2: @" "}.mutableCopy;
-    XCTAssertEqualObjects(dict[@1], @"1");    
-    XCTAssertTrue([dict.chuzzle isKindOfClass:[NSMutableDictionary class]]);
-}
-
 - (void)test_no_chuzzle {
     NSDictionary *a =  @{@1: @"1", @2: @"2"};
     id b = a.chuzzle;
     XCTAssertEqualObjects(a, b);
 }
 
-- (void)test_mutable_string {
-    NSMutableString *a = [NSMutableString stringWithString:@" aa "];
-    a.chuzzle;
-    XCTAssertEqualObjects(a.copy, @"aa");
-    
-    a = [@"  bb  ".mutableCopy chuzzle];
-    XCTAssertEqualObjects(a.copy, @"bb");
-    XCTAssertTrue([a isKindOfClass:[NSMutableString class]]);    
-}
-
 - (void)test_another_test {
     NSDictionary *d = @{@1: @"", @2: @"  2  "}.chuzzle;
     XCTAssertEqualObjects(d, @{@2: @"2"});
+}
+- (void)test_nsobject {
+    id o = [NSObject new];
+    XCTAssertEqual(o, [o chuzzle]);
 }
 
 @end

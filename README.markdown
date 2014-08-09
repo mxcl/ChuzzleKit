@@ -19,14 +19,12 @@ For example:
 
 Note:
 
-* @"  2 3   " chuzzles to: @"2 3", that is, it only trims the string, it doesn’t eat the internal whitespace. This is because the “falsy” whitespace is just the trailing whitespace, not the internal whitespace. This is probably what you expected.
+* `@"  2 3   "` chuzzles to: `@"2 3"`, that is, it only trims the string, it doesn’t eat the internal whitespace. This is because the “falsy” whitespace is just the trailing whitespace, not the internal whitespace. This is probably what you expected.
 
 
 Mutable Chuzzling
 =================
-Chuzzling occurs in-place, as far as it can. If a nil would be the chuzzled
-result the mutable version becomes the empty equivalent, and the return is
-`nil`.
+We removed mutable chuzzling. There are issues with adding category methods to mutable variants in Cocoa, which led to us having to enact hacks. However there were unexpected issues, eg: https://github.com/mxcl/ChuzzleKit/issues/3
 
 
 Custom Chuzzling

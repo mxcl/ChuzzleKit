@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'ChuzzleKit'
-  s.version = '1.0.4'
+  s.version = '1.0.5'
   s.requires_arc = true
   s.source_files = '*.{m,h}'
   s.source = { :git => "https://github.com/mxcl/#{s.name}.git", :tag => s.version }
