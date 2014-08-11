@@ -1,11 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'ChuzzleKit'
-  s.version = '1.0.5'
+  s.version = '1.0.6'
   s.requires_arc = true
   s.source_files = '*.{m,h}'
   s.source = { :git => "https://github.com/mxcl/#{s.name}.git", :tag => s.version }
-  s.compiler_flags = '-fmodules'
-  s.license = 'MIT'
+  s.license = { :type => 'MIT', :text => "This text to make CocoaPods happy." }
   s.summary = 'A chuzzled object is `nil` if it is falsy, otherwise it has its falsy parts removed.'
 
   s.homepage = "http://github.com/mxcl/#{s.name}"

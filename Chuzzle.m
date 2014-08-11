@@ -1,11 +1,5 @@
 #import "Chuzzle.h"
-@import Foundation.NSCharacterSet;
-
-// You can't have category methods on a subclass and a superclass, the one that
-// gets called in undefined. IME sometimes it works, sometimes it doesn’t.
-// Hence we check for mutability in a single chuzzle function. The mutability
-// check is weird, but it turns out class-clusters make isKindOfClass:
-// unreliable for testing mutability.
+#import <Foundation/NSCharacterSet.h>
 
 
 @implementation NSString (Chuzzle)
@@ -33,7 +27,6 @@
             x += 1;
         }
     }
-
     return x == 0 ? nil : [NSDictionary dictionaryWithObjects:objs forKeys:keys count:x];
 }
 
