@@ -1,6 +1,5 @@
-#import "Chuzzle.h"
 #import <Foundation/NSCharacterSet.h>
-
+#import "ChuzzleKit.h"
 
 @implementation NSString (Chuzzle)
 

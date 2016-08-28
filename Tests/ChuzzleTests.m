@@ -1,11 +1,7 @@
-#import <ChuzzleKit/ChuzzleKit.h>
+@import ChuzzleKit;
 @import XCTest;
 
-
-@interface ChuzzleKitTests : XCTestCase
-@end
-
-@implementation ChuzzleKitTests
+@implementation ChuzzleTests: XCTestCase
 
 - (void)test_everything {
     id b = @[@{@"a": @"", @2: @"", @3: @[], @4: [NSNull null]}];

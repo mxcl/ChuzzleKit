@@ -1,0 +1,12 @@
+language: objective-c
+osx_image: xcode8
+
+env:
+  - ACTION=test  PLATFORM=Mac     DESTINATION='platform=OS X'
+  - ACTION=test  PLATFORM=iOS     DESTINATION='platform=iOS Simulator,name=iPhone 6S' UUID='64DF30D4-4118-480F-9ADD-DCC32194B63D'
+  - ACTION=build PLATFORM=watchOS DESTINATION='platform=watchOS Simulator,name=Apple Watch - 38mm'
+  - ACTION=test  PLATFORM=tvOS    DESTINATION='platform=tvOS Simulator,name=Apple TV 1080p' UUID='273D776F-196E-4F2A-AEF2-E1E3EAE99B47'
+
+script:
+  - if [ -n "$UUID" ]; then xcrun instruments -w "$UUID" || true; sleep 15; fi
+  - set -o pipefail && xcodebuild -scheme ChuzzleKit -destination "$DESTINATION" $ACTION | xcpretty

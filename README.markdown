@@ -1,5 +1,4 @@
-ChuzzleKit
-==========
+# ChuzzleKit [![Build Status](https://travis-ci.org/mxcl/ChuzzleKit.svg?branch=master)](https://travis-ci.org/mxcl/ChuzzleKit)
 
 A chuzzled object is nil if it is *falsy*, otherwise it has its *falsy* parts
 removed.
@@ -17,9 +16,8 @@ For example:
 * `@{@1: @""}.chuzzle` is `nil`
 * `@{@1: @"", @2: @" 2  "}.chuzzle` is `@{@2: @"2"}`
 
-Note:
 
-* `@"  2 3   "` chuzzles to: `@"2 3"`, that is, it only trims the string, it doesn’t eat the internal whitespace. This is because the “falsy” whitespace is just the trailing whitespace, not the internal whitespace. This is probably what you expected.
+> Note that: `@"  2 3   "` chuzzles to: `@"2 3"`, that is, it only trims the string, it doesn’t eat the internal whitespace. This is because the “falsy” whitespace is just the trailing whitespace, not the internal whitespace. This is probably what you expected.
 
 
 Mutable Chuzzling
