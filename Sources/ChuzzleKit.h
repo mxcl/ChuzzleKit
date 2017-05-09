@@ -6,25 +6,25 @@
 
 @interface NSString (Chuzzle)
 /// - Returns: The receiver with whitespace trimmed from both ends, if the resulting string is empty, returns `nil`.
-- (NSString *)chuzzle;
+- (NSString * _Nullable)chuzzle;
 @end
 
 @interface NSArray (Chuzzle)
 /// - Returns: The receiver with all elements chuzzled (if they support it), if the resulting array is empty, returns `nil`.
-- (NSArray *)chuzzle;
+- (NSArray * _Nullable)chuzzle;
 @end
 
 @interface NSDictionary (Chuzzle)
 /// - Returns: The receiver with all values chuzzled (if they support it), if the resulting dictionary is empty, returns `nil`.
-- (NSDictionary *)chuzzle;
+- (NSDictionary * _Nullable)chuzzle;
 @end
 
 @interface NSNull (Chuzzle)
 /// - Returns: `nil`
-- (id)chuzzle;
+- (id _Nullable)chuzzle;
 @end
 
 @interface NSObject (Chuzzle)
 /// - Returns: `self`
-- (id)chuzzle;
+- (id _Nullable)chuzzle;
 @end
