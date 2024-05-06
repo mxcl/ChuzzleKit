@@ -35,6 +35,9 @@
 @implementation NSArray (Chuzzle)
 
 - (instancetype)chuzzle {
+    if (self.count == 0) {
+        return nil;
+    }
     id objs[self.count];
     NSUInteger x = 0;
     for (__strong id obj in self) {
