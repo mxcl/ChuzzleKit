@@ -22,7 +22,8 @@
         if ([obj respondsToSelector:@selector(chuzzle)])
             obj = [obj chuzzle];
         if (obj) {
-            objs[x] = obj, keys[x] = key;
+            objs[x] = obj;
+            keys[x] = key;
             x += 1;
         }
     }
