@@ -14,6 +14,9 @@
 @implementation NSDictionary (Chuzzle)
 
 - (id)chuzzle {
+    if (self.count == 0) {
+        return nil;
+    }
     id objs[self.count];
     id keys[self.count];
     NSUInteger x = 0;
