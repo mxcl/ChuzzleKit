@@ -23,5 +23,19 @@
     id o = [NSObject new];
     XCTAssertEqual(o, [o chuzzle]);
 }
+- (void)test_giant_array {
+	// using a very large number of objectcs to illustrate the problem
+	// and make the test trip on powerful desktop machines, but issues
+	// would obviously manifest sooner on mobile devices with less memory
+	NSUInteger size = 50000000;
+	NSMutableArray* a = [NSMutableArray arrayWithCapacity:size];
+	for (int i = 0; i < size; i++) {
+		[a addObject:i % 2 ? @(i) : NSNull.null];
+	}
+	a = [NSArray arrayWithArray:a];
+	NSArray* b;
+	XCTAssertNoThrow(b = a.chuzzle);
+	XCTAssertEqual(b.count, a.count / 2);
+}
 
 @end
