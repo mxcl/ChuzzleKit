@@ -17,20 +17,19 @@
     if (self.count == 0) {
         return nil;
     }
-    id objs[self.count];
-    id keys[self.count];
-    NSUInteger x = 0;
+	NSMutableArray* objs = [NSMutableArray arrayWithCapacity:self.count];
+	NSMutableArray* keys = [NSMutableArray arrayWithCapacity:self.count];
     for (id key in self) {
         id obj = self[key];
-        if ([obj respondsToSelector:@selector(chuzzle)])
-            obj = [obj chuzzle];
+		if ([obj respondsToSelector:@selector(chuzzle)]) {
+			obj = [obj chuzzle];
+		}
         if (obj) {
-            objs[x] = obj;
-            keys[x] = key;
-            x += 1;
+			[objs addObject:obj];
+			[keys addObject:key];
         }
     }
-    return x == 0 ? nil : [NSDictionary dictionaryWithObjects:objs forKeys:keys count:x];
+	return (objs.count == 0) ? nil : [NSDictionary dictionaryWithObjects:objs forKeys:keys];
 }
 
 @end
@@ -42,15 +41,16 @@
     if (self.count == 0) {
         return nil;
     }
-    id objs[self.count];
-    NSUInteger x = 0;
+	NSMutableArray* result = [NSMutableArray arrayWithCapacity:self.count];
     for (__strong id obj in self) {
-        if ([obj respondsToSelector:@selector(chuzzle)])
-            obj = [obj chuzzle];
-        if (obj)
-            objs[x++] = obj;
+		if ([obj respondsToSelector:@selector(chuzzle)]) {
+			obj = [obj chuzzle];
+		}
+		if (obj) {
+			[result addObject:obj];
+		}
     }
-    return x == 0 ? nil : [NSArray arrayWithObjects:objs count:x];
+	return result.count == 0 ? nil : [NSArray arrayWithArray:result];
 }
 
 @end
